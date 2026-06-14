@@ -1,0 +1,29 @@
+---
+import Base from '../layouts/Base.astro';
+const cover = "https://static.wixstatic.com/media/5609ea_65bb8f67ff414550b698bf2dcfbd0324~mv2.png/v1/fill/w_300,h_478,al_c,q_90,enc_auto/Promo1%20Book%20Cover.png";
+---
+<Base title="Press | Chris Stirling" description="Press and media information for Chris Stirling and the Crimson Cross series.">
+  <main class="wrap">
+    <div class="pagehead">
+      <div class="eyebrow">Press &amp; media</div>
+      <h1>Press kit</h1>
+    </div>
+
+    <section class="pad" style="display:grid;grid-template-columns:300px 1fr;gap:44px;align-items:start;">
+      <img src={cover} alt="Crimson Cross: Azure Waves cover" style="width:300px;max-width:100%;border-radius:8px;box-shadow:0 18px 40px rgba(0,0,0,.5);display:block;" />
+      <div class="prose">
+        <h3>About the book</h3>
+        <p><em>Crimson Cross: Azure Waves</em> is the first novel in the Crimson Cross series — a Caribbean adventure of vengeance, brotherhood, and buried secrets set during the Golden Age of Piracy. When Charleston burns and his family falls, sixteen-year-old Samuel Drayton is cast into the lawless waters of the Caribbean and must learn the brutal arts of piracy to survive and expose the conspiracy that destroyed his world.</p>
+        <p>Available for preorder in hardcover ($49.99) and paperback ($19.99), expected mid-2026.</p>
+      </div>
+    </section>
+
+    <section class="pad">
+      <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(240px,1fr));">
+        <div class="card"><h3>Quick facts</h3><p class="prose" style="font-size:15px;">Genre: Historical fiction · Series: Crimson Cross · Setting: Caribbean, 1700–1718 · Author based in Calgary, Canada.</p></div>
+        <div class="card"><h3>Media inquiries</h3><p class="prose" style="font-size:15px;">For interviews, review copies, or assets, get in touch via the <a href="/contact" style="color:var(--brass);">contact page</a>.</p></div>
+        <div class="card"><h3>Follow</h3><p class="prose" style="font-size:15px;"><a href="https://www.youtube.com/@Chris.Stirling" style="color:var(--brass);">YouTube</a> · <a href="https://www.tiktok.com/@chris_stirling" style="color:var(--brass);">TikTok</a> · <a href="https://www.instagram.com/chrisstirling.writer/" style="color:var(--brass);">Instagram</a></p></div>
+      </div>
+    </section>
+  </main>
+</Base>

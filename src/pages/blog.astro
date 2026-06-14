@@ -1,0 +1,40 @@
+---
+import Base from '../layouts/Base.astro';
+---
+<Base title="Blog | Chris Stirling" description="Pirate history and the writing journey behind the Crimson Cross series.">
+  <main class="wrap">
+    <div class="pagehead">
+      <div class="eyebrow">The blog</div>
+      <h1>Pirate history &amp; the writing journey</h1>
+    </div>
+    <section class="pad">
+      <div class="grid" id="posts" style="grid-template-columns:repeat(auto-fill,minmax(300px,1fr));">
+        <div class="card"><h3>Loading posts…</h3><p class="prose">Fetching the latest from the blog.</p></div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    import { createClient, OAuthStrategy } from '@wix/sdk';
+    import { posts } from '@wix/blog';
+    const clientId = import.meta.env.PUBLIC_WIX_CLIENT_ID;
+    (async () => {
+      const grid = document.getElementById('posts');
+      try {
+        const wix = createClient({ modules: { posts }, auth: OAuthStrategy({ clientId }) });
+        const res = await wix.posts.queryPosts().limit(50).find();
+        const items = res.items || [];
+        if (!items.length) { grid.innerHTML = '<div class="card"><h3>No posts yet</h3><p class="prose">Check back soon.</p></div>'; return; }
+        grid.innerHTML = items.map((p) => {
+          const url = p.url?.base ? (p.url.base + (p.url.path || '')) : '#';
+          const date = p.firstPublishedDate ? new Date(p.firstPublishedDate).toLocaleDateString('en-CA', { year:'numeric', month:'short', day:'numeric' }) : '';
+          const excerpt = p.excerpt || '';
+          return `<a class="card" href="${url}" style="display:block;"><div style="color:var(--brass);font-size:12px;letter-spacing:.06em;margin-bottom:8px;">${date}</div><h3>${p.title}</h3><p class="prose" style="font-size:15px;">${excerpt}</p></a>`;
+        }).join('');
+      } catch (e) {
+        console.warn('Blog load failed:', e);
+        grid.innerHTML = '<div class="card"><h3>Couldn’t load posts</h3><p class="prose">Please try again shortly.</p></div>';
+      }
+    })();
+  </script>
+</Base>

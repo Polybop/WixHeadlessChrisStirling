@@ -1,0 +1,27 @@
+---
+import Base from '../layouts/Base.astro';
+const headshot = "https://static.wixstatic.com/media/5609ea_eef3f98dbd2348fe86fcc3c394cbfff0~mv2.png/v1/fill/w_320,h_420,al_c,q_85,enc_auto/file.png";
+---
+<Base title="About | Chris Stirling" description="Chris Stirling — historical-fiction author of the Crimson Cross series, set in the Golden Age of Piracy.">
+  <main class="wrap">
+    <div class="pagehead">
+      <div class="eyebrow">The author</div>
+      <h1>Chris Stirling</h1>
+    </div>
+    <section class="pad" style="display:grid;grid-template-columns:300px 1fr;gap:44px;align-items:start;">
+      <img src={headshot} alt="Chris Stirling" style="width:300px;max-width:100%;border-radius:12px;display:block;" />
+      <div class="prose">
+        <p>Chris Stirling traded the frozen prairies of Winnipeg for the warm, reef-ringed waters of Bermuda — and that's where his lifelong fascination with maritime history found its subject. Surrounded by coral forts and the ghosts of the age of sail, he started writing the stories that became the Crimson Cross series.</p>
+        <p>A technology manager by day and an adventure storyteller by night, Chris brings systematic research and a deep love of human drama to his fiction. The Golden Age of Piracy, in his hands, isn't cutlasses and clichés — it's politics, brotherhood, and the thin, shifting line between pirate and patriot.</p>
+        <p>Having recently returned to Calgary after years in Auckland with his wife and young son, Chris is happiest when he's planning his next historical deep dive — usually while chasing a toddler and keeping one eye on his beloved Winnipeg Jets.</p>
+      </div>
+    </section>
+    <section class="pad">
+      <div class="card" style="max-width:640px;">
+        <h3>Start with Chapter One</h3>
+        <p class="prose" style="margin-bottom:16px;">Read the opening of <em>Crimson Cross: Azure Waves</em> free, then preorder the book.</p>
+        <a class="btn btn-crimson" href="/#books">Get the first chapter</a>
+      </div>
+    </section>
+  </main>
+</Base>

@@ -1,0 +1,78 @@
+---
+const {
+  title = "Chris Stirling | Golden Age of Piracy Historical Fiction",
+  description = "Historical fiction by Chris Stirling — the Crimson Cross series, set in the Golden Age of Piracy.",
+} = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <style is:global>
+    :root{
+      --bg:#1A1F24; --surface:#232A31; --bone:#ECEAE4; --muted:#9AA7B0;
+      --crimson:#C8402F; --crimson-d:#AE3320; --steel:#8FA0AC; --brass:#C9A24B; --line:rgba(236,234,228,0.12);
+      --serif:"Iowan Old Style","Palatino Linotype",Georgia,"Times New Roman",serif;
+      --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{background:var(--bg);color:var(--bone);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased}
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:1140px;margin:0 auto;padding:0 28px}
+    nav{display:flex;align-items:center;justify-content:space-between;padding:20px 28px;max-width:1140px;margin:0 auto}
+    .brand{font-family:var(--serif);font-size:20px;letter-spacing:.16em;text-transform:uppercase}
+    .nav-links{display:flex;gap:26px;font-size:14px;color:var(--muted)}
+    .nav-links a:hover,.nav-links a.active{color:var(--bone)}
+    .btn{display:inline-block;border-radius:7px;font-weight:600;cursor:pointer;border:0;font-family:var(--sans)}
+    .btn-crimson{background:var(--crimson);color:#fff;padding:13px 24px;font-size:15px}
+    .btn-crimson:hover{background:var(--crimson-d)}
+    .btn-ghost{border:1.5px solid var(--steel);color:var(--bone);background:transparent;padding:11px 22px;font-size:14px}
+    .btn-sm{padding:9px 16px;font-size:13px}
+    h1{font-family:var(--serif);font-size:46px;line-height:1.08;font-weight:600;margin-bottom:18px}
+    h2{font-family:var(--serif);font-size:30px;font-weight:600;margin:0 0 18px}
+    h3{font-family:var(--serif);font-size:20px;font-weight:600;margin:0 0 8px}
+    .eyebrow{color:var(--crimson);font-size:13px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;margin-bottom:14px}
+    .pagehead{padding:56px 0 10px}
+    section.pad{padding:34px 0}
+    .prose{max-width:42em;color:#D6D3CB;font-size:17px}
+    .prose p{margin:0 0 16px}
+    .card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:22px}
+    .grid{display:grid;gap:18px}
+    footer{border-top:1px solid var(--line);background:#15191D;color:var(--muted);margin-top:50px}
+    footer .wrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;padding:30px 28px;font-size:13.5px}
+    .socials{display:flex;gap:18px}
+    .socials a{color:var(--steel)} .socials a:hover{color:var(--bone)}
+    @media(max-width:760px){ .nav-links{display:none} h1{font-size:34px} }
+  </style>
+</head>
+<body>
+  <nav>
+    <a class="brand" href="/">Chris Stirling</a>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/about">About</a>
+      <a href="/#books">Books</a>
+      <a href="/blog">Blog</a>
+      <a href="/press">Press</a>
+      <a href="/contact">Contact</a>
+    </div>
+    <a class="btn btn-crimson btn-sm" href="/#books">Preorder</a>
+  </nav>
+
+  <slot />
+
+  <footer>
+    <div class="wrap">
+      <div>© 2026 Chris Stirling · Historical fiction author</div>
+      <div class="socials">
+        <a href="https://www.youtube.com/@Chris.Stirling">YouTube</a>
+        <a href="https://www.tiktok.com/@chris_stirling">TikTok</a>
+        <a href="https://www.instagram.com/chrisstirling.writer/">Instagram</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
