@@ -1,0 +1,39 @@
+---
+import Base from '../../layouts/Base.astro';
+const cover = "https://static.wixstatic.com/media/5609ea_65bb8f67ff414550b698bf2dcfbd0324~mv2.png/v1/fill/w_420,h_670,al_c,q_90,enc_auto/Promo1%20Book%20Cover.png";
+const HARDCOVER = "https://www.chrisstirling.com/product-page/crimson-cross-azure-waves-hardcover";
+const PAPERBACK = "https://www.chrisstirling.com/product-page/crimson-cross-azure-waves-paperback";
+---
+<Base title="Crimson Cross: Azure Waves | Chris Stirling" description="Book One of the Crimson Cross series — a Caribbean adventure of vengeance, brotherhood, and buried secrets.">
+  <main class="wrap">
+    <section class="pad" style="display:grid;grid-template-columns:420px 1fr;gap:50px;align-items:start;padding-top:48px;">
+      <div>
+        <img src={cover} alt="Crimson Cross: Azure Waves cover" style="width:420px;max-width:100%;border-radius:8px;box-shadow:0 22px 50px rgba(0,0,0,.55);display:block;" />
+        <div style="margin-top:18px;display:flex;flex-direction:column;gap:10px;">
+          <a class="btn btn-crimson" href={HARDCOVER}>Preorder hardcover · $49.99</a>
+          <a class="btn btn-ghost" href={PAPERBACK}>Preorder paperback · $19.99</a>
+        </div>
+        <p style="color:var(--muted);font-size:13px;margin-top:10px;">Coming mid-2026</p>
+      </div>
+      <div class="prose">
+        <div class="eyebrow">Book One · The Crimson Cross series</div>
+        <h1>Crimson Cross: Azure Waves</h1>
+        <p>When Charleston burns and his family falls to a coordinated pirate attack, sixteen-year-old Samuel Drayton loses everything — his privileged life, his future, and his innocence. But the raid that destroyed his world wasn't random. It was an execution, orchestrated by the very colonial officials his father trusted.</p>
+        <p>Cast into the lawless waters of the Caribbean, Samuel must shed his aristocratic skin and learn the brutal arts of piracy to survive. Under the harsh tutelage of the enigmatic quartermaster Sable, he discovers that the line between pirate and patriot is far thinner than he ever imagined. From the sun-drenched ports of Nassau to the treacherous waters off Havana, his quest for vengeance becomes something greater: a fight to expose the conspiracy that murdered his parents and threatens the entire Caribbean.</p>
+        <h3 style="margin-top:24px;">Perfect for readers who crave</h3>
+        <ul style="color:#CFCCC4;font-size:16px;line-height:1.9;padding-left:20px;">
+          <li>Authentic historical detail without romanticized clichés</li>
+          <li>Complex characters navigating genuine moral gray areas</li>
+          <li>Brotherhood forged in blood and storm</li>
+          <li>Caribbean settings that pulse with life and danger</li>
+          <li>Conspiracy and intrigue spanning multiple colonies</li>
+        </ul>
+        <div class="card" style="margin-top:24px;max-width:520px;">
+          <h3>Read the first chapter free</h3>
+          <p style="font-size:15px;margin:6px 0 12px;">Start the adventure before you preorder.</p>
+          <a class="btn btn-crimson btn-sm" href="/#books">Send me Chapter One</a>
+        </div>
+      </div>
+    </section>
+  </main>
+</Base>

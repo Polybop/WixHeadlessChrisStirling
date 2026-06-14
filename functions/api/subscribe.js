@@ -1,17 +1,15 @@
 // Cloudflare Pages Function: POST /api/subscribe
-// Adds an email to the MailerLite "Newsletter" group, which triggers the
-// existing "Send Chapter One Preview" automation (delivers the chapter PDF).
-// Requires a Cloudflare Pages environment variable: MAILERLITE_API_KEY
-// (Settings -> Environment variables). Never hard-code the key here.
+// Adds an email to the MailerLite "Newsletter" group (triggers the
+// "Send Chapter One Preview" automation). Passes the visitor's IP so
+// MailerLite can geolocate the subscriber (populates the Location field).
+// Requires a Cloudflare env variable: MAILERLITE_API_KEY
 
 const ML = 'https://connect.mailerlite.com/api';
 
 export async function onRequestPost(context) {
   const { request, env } = context;
   const key = env.MAILERLITE_API_KEY;
-  if (!key) {
-    return json({ error: 'Signup not configured' }, 500);
-  }
+  if (!key) return json({ error: 'Signup not configured' }, 500);
 
   let email;
   try {
@@ -23,6 +21,9 @@ export async function onRequestPost(context) {
     return json({ error: 'Invalid email' }, 400);
   }
 
+  // Real visitor IP (Cloudflare sets this header). Used for MailerLite geolocation.
+  const ip = request.headers.get('CF-Connecting-IP') || '';
+
   const headers = {
     Authorization: `Bearer ${key}`,
     'Content-Type': 'application/json',
@@ -30,15 +31,21 @@ export async function onRequestPost(context) {
   };
 
   try {
-    // Find the Newsletter group id
     const gRes = await fetch(`${ML}/groups`, { headers });
     const gData = await gRes.json();
     const group = (gData.data || []).find(
       (g) => (g.name || '').toLowerCase() === 'newsletter'
     );
 
-    // Create/update the subscriber, attaching the Newsletter group (fires the automation)
-    const body = { email, groups: group ? [String(group.id)] : [] };
+    const body = {
+      email,
+      groups: group ? [String(group.id)] : [],
+    };
+    if (ip) {
+      body.ip_address = ip;
+      body.optin_ip = ip;
+    }
+
     const sRes = await fetch(`${ML}/subscribers`, {
       method: 'POST',
       headers,

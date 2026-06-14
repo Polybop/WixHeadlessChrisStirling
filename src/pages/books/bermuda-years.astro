@@ -1,0 +1,29 @@
+---
+import Base from '../../layouts/Base.astro';
+const cover = "https://static.wixstatic.com/media/5609ea_65bb8f67ff414550b698bf2dcfbd0324~mv2.png/v1/fill/w_420,h_670,al_c,q_90,enc_auto/Promo1%20Book%20Cover.png";
+const PRODUCT = "https://www.chrisstirling.com/product-page/crimson-cross-the-bermuda-years-working-title";
+---
+<Base title="Crimson Cross: The Bermuda Years | Chris Stirling" description="The prequel novella to the Crimson Cross series — Thomas Drayton's Bermuda years.">
+  <main class="wrap">
+    <section class="pad" style="display:grid;grid-template-columns:420px 1fr;gap:50px;align-items:start;padding-top:48px;">
+      <div>
+        <img src={cover} alt="Crimson Cross: The Bermuda Years" style="width:420px;max-width:100%;border-radius:8px;box-shadow:0 22px 50px rgba(0,0,0,.55);display:block;filter:grayscale(.15) sepia(.12);" />
+        <div style="margin-top:18px;">
+          <a class="btn btn-crimson" href={PRODUCT}>More info · $14.99</a>
+        </div>
+        <p style="color:var(--muted);font-size:13px;margin-top:10px;">Prequel novella</p>
+      </div>
+      <div class="prose">
+        <div class="eyebrow">Prequel · The Crimson Cross series</div>
+        <h1>Crimson Cross: The Bermuda Years</h1>
+        <p>Before the Azure Waves, there was Bermuda. This prequel novella takes readers to the sun-bleached coral fortress where Thomas Drayton first earned his reputation — as both a brilliant military tactician and a devoted family man.</p>
+        <p>As commander of Bermuda's defenses, Thomas builds the life and the name his son Samuel will one day fight to avenge. It's the calm, sunled chapter before the storm of <em>Azure Waves</em> — essential reading for anyone who wants to understand how the conspiracy began, and what was truly lost when Charleston burned.</p>
+        <div class="card" style="margin-top:24px;max-width:520px;">
+          <h3>Start the saga</h3>
+          <p style="font-size:15px;margin:6px 0 12px;">New to Crimson Cross? Begin with Book One.</p>
+          <a class="btn btn-ghost btn-sm" href="/books/azure-waves">Crimson Cross: Azure Waves</a>
+        </div>
+      </div>
+    </section>
+  </main>
+</Base>
