@@ -5,7 +5,7 @@ import Base from '../layouts/Base.astro';
   <style is:global>
     .feature-list{display:flex;flex-direction:column;gap:46px;margin-top:10px}
     .feature{width:88%;display:grid;grid-template-columns:380px 1fr;background:var(--surface);border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 14px 36px rgba(20,40,55,.10);transition:transform .15s ease,border-color .15s ease}
-    .feature:hover{transform:translateY(-3px);border-color:var(--brass)}
+    .feature:hover{transform:translateY(-3px);border-color:var(--teal)}
     .feature.right{margin-left:auto}
     .feature.flip{grid-template-columns:1fr 380px}
     .feature .img{min-height:260px;position:relative;background-size:cover;background-position:center}
@@ -32,7 +32,6 @@ import Base from '../layouts/Base.astro';
 
   <script>
     import { createClient, OAuthStrategy } from '@wix/sdk';
-    import { posts } from '@wix/blog';
     const clientId = import.meta.env.PUBLIC_WIX_CLIENT_ID;
 
     const gradients = [
@@ -52,9 +51,15 @@ import Base from '../layouts/Base.astro';
     (async () => {
       const list = document.getElementById('posts');
       try {
-        const wix = createClient({ modules: { posts }, auth: OAuthStrategy({ clientId }) });
-        const res = await wix.posts.queryPosts().limit(50).find();
-        const items = res.items || [];
+        const client = createClient({ auth: OAuthStrategy({ clientId }) });
+        const tokens = await client.auth.generateVisitorTokens();
+        const res = await fetch('https://www.wixapis.com/blog/v3/posts/query', {
+          method: 'POST',
+          headers: { 'Authorization': tokens.accessToken.value, 'Content-Type': 'application/json' },
+          body: JSON.stringify({ query: { paging: { limit: 50 }, sort: [{ fieldName: 'firstPublishedDate', order: 'DESC' }] }, fieldsets: ['URL'] })
+        });
+        const data = await res.json();
+        const items = data.posts || [];
         if (!items.length){ list.innerHTML = '<p class="prose">No posts yet — check back soon.</p>'; return; }
         list.innerHTML = items.map((p, i) => {
           const url = p.url && p.url.base ? (p.url.base + (p.url.path || '')) : '#';
