@@ -1,0 +1,229 @@
+---
+const cover = "https://static.wixstatic.com/media/5609ea_65bb8f67ff414550b698bf2dcfbd0324~mv2.png/v1/fill/w_440,h_700,al_c,q_90,enc_auto/Promo1%20Book%20Cover.png";
+const headshot = "https://static.wixstatic.com/media/5609ea_eef3f98dbd2348fe86fcc3c394cbfff0~mv2.png/v1/fill/w_240,h_320,al_c,q_85,enc_auto/file.png";
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Chris Stirling | Golden Age of Piracy Historical Fiction</title>
+  <meta name="description" content="Historical fiction by Chris Stirling. Step into the Golden Age of Piracy with Crimson Cross: Azure Waves — a Caribbean adventure of vengeance, brotherhood, and buried secrets. Preorder now." />
+  <style is:global>
+    :root{
+      --bg:#1A1F24; --surface:#232A31; --bone:#ECEAE4; --muted:#9AA7B0;
+      --crimson:#C8402F; --crimson-d:#AE3320; --steel:#8FA0AC; --brass:#C9A24B; --line:rgba(236,234,228,0.12);
+      --serif:"Iowan Old Style","Palatino Linotype",Georgia,"Times New Roman",serif;
+      --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{background:var(--bg);color:var(--bone);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased}
+    a{color:inherit;text-decoration:none}
+    .wrap{max-width:1140px;margin:0 auto;padding:0 28px}
+    nav{display:flex;align-items:center;justify-content:space-between;padding:20px 28px;max-width:1140px;margin:0 auto}
+    .brand{font-family:var(--serif);font-size:20px;letter-spacing:.16em;text-transform:uppercase}
+    .nav-links{display:flex;gap:26px;font-size:14px;color:var(--muted)}
+    .nav-links a:hover{color:var(--bone)}
+    .btn{display:inline-block;border-radius:7px;font-weight:600;cursor:pointer;border:0;font-family:var(--sans)}
+    .btn-crimson{background:var(--crimson);color:#fff;padding:13px 24px;font-size:15px}
+    .btn-crimson:hover{background:var(--crimson-d)}
+    .btn-ghost{border:1.5px solid var(--steel);color:var(--bone);background:transparent;padding:11px 22px;font-size:14px}
+    .btn-sm{padding:9px 16px;font-size:13px}
+    .hero{display:grid;grid-template-columns:1.15fr .85fr;gap:54px;align-items:center;padding:60px 0 70px}
+    .eyebrow{color:var(--crimson);font-size:13px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;margin-bottom:18px}
+    h1{font-family:var(--serif);font-size:54px;line-height:1.05;font-weight:600;margin-bottom:18px}
+    h1 .sub{display:block;color:var(--steel);font-size:30px;font-style:italic;margin-top:8px}
+    .lede{font-size:18px;color:#D6D3CB;max-width:30em;margin-bottom:28px}
+    .capture{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:20px;max-width:430px}
+    .capture .k{font-family:var(--serif);font-size:18px;margin-bottom:4px}
+    .capture .s{font-size:13.5px;color:var(--muted);margin-bottom:14px}
+    .field{display:flex;gap:8px}
+    .field input{flex:1;background:#171B20;border:1px solid var(--line);border-radius:7px;color:var(--bone);padding:0 13px;height:46px;font-size:14px;font-family:var(--sans)}
+    .field input::placeholder{color:#6E7A83}
+    .field .btn-crimson{height:46px;padding:0 18px;white-space:nowrap}
+    .formmsg{font-size:13px;color:var(--brass);margin-top:10px;min-height:18px}
+    .orrow{display:flex;align-items:center;gap:14px;margin-top:22px;max-width:430px}
+    .orrow .ln{flex:1;height:1px;background:var(--line)}
+    .orrow span{color:var(--muted);font-size:12px;letter-spacing:.1em}
+    .preorder{display:flex;gap:12px;margin-top:18px;flex-wrap:wrap}
+    .cover{position:relative;justify-self:center}
+    .cover img{width:340px;max-width:100%;border-radius:6px;box-shadow:0 26px 60px rgba(0,0,0,.55);display:block}
+    .cover .tag{position:absolute;top:-14px;right:-14px;background:var(--crimson);color:#fff;font-size:12px;font-weight:600;letter-spacing:.08em;padding:7px 12px;border-radius:6px;text-transform:uppercase}
+    section.pad{padding:66px 0}
+    .sec-label{color:var(--crimson);font-size:12px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;margin-bottom:12px}
+    h2{font-family:var(--serif);font-size:32px;font-weight:600;margin-bottom:22px}
+    .books{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
+    .book{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px;display:flex;flex-direction:column}
+    .book .bt{font-family:var(--serif);font-size:18px;margin-bottom:6px}
+    .book .bp{color:var(--brass);font-weight:600;margin-bottom:12px}
+    .book .btn{margin-top:auto;align-self:flex-start}
+    .about{display:grid;grid-template-columns:200px 1fr;gap:40px;align-items:center}
+    .about img{width:200px;border-radius:10px;display:block}
+    .about p{color:#CFCCC4;font-size:16.5px;max-width:48em}
+    .posts{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+    .post{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px}
+    .post .pt{font-family:var(--serif);font-size:17px;margin-bottom:8px}
+    .post .pe{color:var(--muted);font-size:14px}
+    footer{border-top:1px solid var(--line);background:#15191D;color:var(--muted)}
+    footer .wrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;padding:30px 28px;font-size:13.5px}
+    .socials{display:flex;gap:18px}
+    .socials a{color:var(--steel)} .socials a:hover{color:var(--bone)}
+    @media(max-width:880px){
+      .hero{grid-template-columns:1fr;gap:34px;padding:40px 0 50px}
+      h1{font-size:40px} h1 .sub{font-size:24px}
+      .cover{order:-1} .cover img{width:240px}
+      .about{grid-template-columns:1fr} .about img{width:150px}
+      .nav-links{display:none}
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="brand">Chris Stirling</div>
+    <div class="nav-links">
+      <a href="/">Home</a><a href="/about">About</a><a href="#books">Books</a><a href="/blog">Blog</a><a href="#about">Press</a><a href="#contact">Contact</a>
+    </div>
+    <a class="btn btn-crimson btn-sm" href="#books">Preorder</a>
+  </nav>
+
+  <header class="wrap">
+    <div class="hero">
+      <div>
+        <div class="eyebrow">Golden Age of Piracy · Historical Fiction</div>
+        <h1>Crimson Cross<span class="sub">Azure Waves</span></h1>
+        <p class="lede">Charleston burns, a family falls, and sixteen-year-old Samuel Drayton is cast into the lawless waters of the Caribbean — where the line between pirate and patriot is thinner than he ever imagined.</p>
+
+        <div class="capture">
+          <div class="k">Start reading free</div>
+          <div class="s">Get the first chapter as a PDF, plus the occasional letter from the writing desk.</div>
+          <form class="field" id="signup">
+            <input type="email" id="email" placeholder="you@email.com" required />
+            <button class="btn btn-crimson" type="submit">Send me Chapter One</button>
+          </form>
+          <div class="formmsg" id="formmsg"></div>
+        </div>
+
+        <div class="orrow"><span class="ln"></span><span>OR PREORDER NOW</span><span class="ln"></span></div>
+        <div class="preorder">
+          <a class="btn btn-crimson" href="#books">Preorder hardcover · $49.99</a>
+          <a class="btn btn-ghost" href="#books">Paperback · $19.99</a>
+        </div>
+      </div>
+
+      <div class="cover">
+        <span class="tag">Coming mid-2026</span>
+        <img src={cover} alt="Crimson Cross: Azure Waves cover" />
+      </div>
+    </div>
+  </header>
+
+  <section class="pad wrap" id="books">
+    <div class="sec-label">The books</div>
+    <h2>The Crimson Cross series</h2>
+    <div class="books" id="books-grid">
+      <div class="book"><div class="bt">Crimson Cross: Azure Waves (Hardcover)</div><div class="bp">$49.99</div><a class="btn btn-crimson btn-sm" href="https://www.chrisstirling.com/product-page/crimson-cross-azure-waves-hardcover">Preorder</a></div>
+      <div class="book"><div class="bt">Crimson Cross: Azure Waves (Paperback)</div><div class="bp">$19.99</div><a class="btn btn-crimson btn-sm" href="https://www.chrisstirling.com/product-page/crimson-cross-azure-waves-paperback">Preorder</a></div>
+      <div class="book"><div class="bt">Crimson Cross: The Bermuda Years</div><div class="bp">$14.99</div><a class="btn btn-ghost btn-sm" href="https://www.chrisstirling.com/product-page/crimson-cross-the-bermuda-years-working-title">More info</a></div>
+    </div>
+  </section>
+
+  <section class="pad" style="background:var(--surface)" id="about">
+    <div class="wrap about">
+      <img src={headshot} alt="Chris Stirling" />
+      <div>
+        <div class="sec-label">The author</div>
+        <h2>From the frozen prairies to warm waters</h2>
+        <p>Chris Stirling traded Winnipeg's winters for the reefs of Bermuda, where he found his passion for maritime history. A technology manager by day and adventure storyteller by night, he brings systematic research and a love of human drama to the Crimson Cross series — written between chasing a toddler and following his beloved Winnipeg Jets.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="pad wrap" id="blog">
+    <div class="sec-label">From the blog</div>
+    <h2>Pirate history &amp; the writing journey</h2>
+    <div class="posts" id="posts-grid">
+      <div class="post"><div class="pt">Visit the blog</div><div class="pe">Stories from the Golden Age of Piracy and behind-the-scenes notes. <a href="/blog" style="color:var(--brass)">Read the latest →</a></div></div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="wrap">
+      <div>© 2026 Chris Stirling · Historical fiction author</div>
+      <div class="socials">
+        <a href="https://www.youtube.com/@Chris.Stirling">YouTube</a>
+        <a href="https://www.tiktok.com/@chris_stirling">TikTok</a>
+        <a href="https://www.instagram.com/chrisstirling.writer/">Instagram</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    import { createClient, OAuthStrategy } from '@wix/sdk';
+    import { products } from '@wix/stores';
+    import { posts } from '@wix/blog';
+
+    const clientId = import.meta.env.PUBLIC_WIX_CLIENT_ID;
+
+    async function loadWixData() {
+      if (!clientId) return;
+      try {
+        const wix = createClient({
+          modules: { products, posts },
+          auth: OAuthStrategy({ clientId }),
+        });
+
+        // --- Live products ---
+        try {
+          const res = await wix.products.queryProducts().find();
+          const items = res.items || [];
+          if (items.length) {
+            const grid = document.getElementById('books-grid');
+            grid.innerHTML = items.map((p) => {
+              const price = (p.priceData && (p.priceData.formatted?.price || p.priceData.price)) || '';
+              const url = p.productPageUrl?.base ? (p.productPageUrl.base + (p.productPageUrl.path || '')) : ('https://www.chrisstirling.com/product-page/' + (p.slug || ''));
+              return `<div class="book"><div class="bt">${p.name}</div><div class="bp">${price}</div><a class="btn btn-crimson btn-sm" href="${url}">View</a></div>`;
+            }).join('');
+          }
+        } catch (e) { console.warn('Products load failed:', e); }
+
+        // --- Latest blog posts ---
+        try {
+          const res = await wix.posts.queryPosts().limit(3).find();
+          const items = res.items || [];
+          if (items.length) {
+            const grid = document.getElementById('posts-grid');
+            grid.innerHTML = items.map((post) => {
+              const url = post.url?.base ? (post.url.base + (post.url.path || '')) : ('/blog');
+              const excerpt = post.excerpt || '';
+              return `<div class="post"><div class="pt"><a href="${url}">${post.title}</a></div><div class="pe">${excerpt}</div></div>`;
+            }).join('');
+          }
+        } catch (e) { console.warn('Posts load failed:', e); }
+      } catch (e) {
+        console.warn('Wix client init failed:', e);
+      }
+    }
+
+    // --- Email signup -> Cloudflare function (works once deployed) ---
+    const form = document.getElementById('signup');
+    form?.addEventListener('submit', async (ev) => {
+      ev.preventDefault();
+      const email = document.getElementById('email').value;
+      const msg = document.getElementById('formmsg');
+      msg.textContent = 'Sending…';
+      try {
+        const r = await fetch('/api/subscribe', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email }),
+        });
+        msg.textContent = r.ok ? 'Check your inbox for Chapter One!' : 'Thanks — we’ll be in touch. (Signup endpoint goes live on deploy.)';
+      } catch {
+        msg.textContent = 'Thanks — we’ll be in touch. (Signup endpoint goes live on deploy.)';
+      }
+    });
+
+    loadWixData();
+  </script>
+</body>
+</html>
