@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "astro": "latest",
+    "@astrojs/sitemap": "latest",
     "@wix/sdk": "latest",
     "@wix/stores": "latest",
     "@wix/blog": "latest"

@@ -1,0 +1,59 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getPostsFull, coverUrl } from '../../lib/wix.mjs';
+import { renderRicos } from '../../lib/ricos.mjs';
+
+export async function getStaticPaths() {
+  const posts = await getPostsFull();
+  return posts.map((post) => ({ params: { slug: post.slug }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const cover = coverUrl(post);
+const date = post.firstPublishedDate ? new Date(post.firstPublishedDate).toLocaleDateString('en-CA', { year: 'numeric', month: 'long', day: 'numeric' }) : '';
+const bodyHtml = renderRicos((post.richContent && post.richContent.nodes) || []);
+const desc = (post.excerpt || 'A post from the Crimson Cross blog.').slice(0, 160);
+const articleLd = {
+  "@context": "https://schema.org", "@type": "BlogPosting",
+  "headline": post.title,
+  "datePublished": post.firstPublishedDate,
+  "dateModified": post.lastPublishedDate || post.firstPublishedDate,
+  "image": cover || undefined,
+  "author": { "@type": "Person", "name": "Chris Stirling" },
+  "publisher": { "@type": "Person", "name": "Chris Stirling" },
+  "mainEntityOfPage": "https://www.chrisstirling.com/blog/" + post.slug,
+  "description": desc
+};
+---
+<Base title={post.title + " | Chris Stirling"} description={desc} image={cover || undefined}>
+  <style>
+    .article{max-width:740px;margin:0 auto;padding:30px 28px 10px}
+    .article .cover{width:100%;border-radius:14px;margin:18px 0 26px;display:block;box-shadow:0 16px 40px rgba(20,40,55,.16)}
+    .article .meta{color:var(--brass);font-size:13px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px}
+    .article h1{font-size:40px;margin-bottom:8px}
+    .article .content{color:#27343C;font-size:18px;line-height:1.8}
+    .article .content p{margin:0 0 20px}
+    .article .content h2{font-family:var(--serif);font-size:27px;margin:32px 0 12px;color:var(--ink)}
+    .article .content h3{font-family:var(--serif);font-size:21px;margin:26px 0 10px;color:var(--ink)}
+    .article .content ul,.article .content ol{margin:0 0 20px 22px}
+    .article .content li{margin:0 0 8px}
+    .article .content img{max-width:100%;border-radius:10px;margin:20px 0;display:block}
+    .article .content blockquote{border-left:3px solid var(--crimson);background:var(--surface);padding:14px 20px;border-radius:0 10px 10px 0;margin:0 0 20px;font-style:italic;color:#3A4A53}
+    .article .content a{color:var(--teal-d);text-decoration:underline}
+    .article .cta{margin:40px 0 10px;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:24px;box-shadow:0 10px 28px rgba(20,40,55,.07)}
+  </style>
+
+  <article class="article">
+    <div class="meta">{date}</div>
+    <h1>{post.title}</h1>
+    {cover && <img class="cover" src={cover} alt="" />}
+    <div class="content" set:html={bodyHtml} />
+    <div class="cta">
+      <h3>Keep reading the saga</h3>
+      <p style="margin:6px 0 12px;color:#3A4A53;">Get the first chapter of Crimson Cross: Azure Waves free, or preorder the book.</p>
+      <a class="btn btn-crimson btn-sm" href="/#books">Send me Chapter One</a>
+    </div>
+    <div style="margin:36px 0 0;"><a href="/blog" style="color:var(--teal-d);">← Back to the blog</a></div>
+  </article>
+  <script type="application/ld+json" set:html={JSON.stringify(articleLd)} />
+</Base>

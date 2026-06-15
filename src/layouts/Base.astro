@@ -2,7 +2,9 @@
 const {
   title = "Chris Stirling | Golden Age of Piracy Historical Fiction",
   description = "Historical fiction by Chris Stirling — the Crimson Cross series, set in the Golden Age of Piracy.",
+  image = "https://static.wixstatic.com/media/5609ea_65bb8f67ff414550b698bf2dcfbd0324~mv2.png/v1/fill/w_1200,h_630,al_c,q_85,enc_auto/cover.png",
 } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site || "https://www.chrisstirling.com").href;
 ---
 <!doctype html>
 <html lang="en">
@@ -11,6 +13,17 @@ const {
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>{title}</title>
   <meta name="description" content={description} />
+  <link rel="canonical" href={canonical} />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={image} />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:site_name" content="Chris Stirling" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={image} />
   <style is:global>
     :root{
       --bg:#E5ECEC; --surface:#FFFFFF; --surface2:#D5DFE0;

@@ -1,7 +1,13 @@
 ---
 import Base from '../layouts/Base.astro';
+import { getLatestVideo } from '../lib/youtube.mjs';
 const cover = "https://static.wixstatic.com/media/5609ea_65bb8f67ff414550b698bf2dcfbd0324~mv2.png/v1/fill/w_440,h_700,al_c,q_90,enc_auto/Promo1%20Book%20Cover.png";
 const headshot = "https://static.wixstatic.com/media/5609ea_eef3f98dbd2348fe86fcc3c394cbfff0~mv2.png/v1/fill/w_240,h_320,al_c,q_85,enc_auto/file.png";
+const video = await getLatestVideo();
+
+const personLd = { "@context": "https://schema.org", "@type": "Person", "name": "Chris Stirling", "url": "https://www.chrisstirling.com", "jobTitle": "Author", "sameAs": ["https://www.youtube.com/@Chris.Stirling", "https://www.tiktok.com/@chris_stirling", "https://www.instagram.com/chrisstirling.writer/"] };
+const siteLd = { "@context": "https://schema.org", "@type": "WebSite", "name": "Chris Stirling", "url": "https://www.chrisstirling.com" };
+const bookLd = { "@context": "https://schema.org", "@type": "Book", "name": "Crimson Cross: Azure Waves", "author": { "@type": "Person", "name": "Chris Stirling" }, "bookFormat": "https://schema.org/Hardcover", "url": "https://www.chrisstirling.com/books/azure-waves", "image": cover, "offers": [ { "@type": "Offer", "price": "49.99", "priceCurrency": "USD", "availability": "https://schema.org/PreOrder" }, { "@type": "Offer", "price": "19.99", "priceCurrency": "USD", "availability": "https://schema.org/PreOrder" } ] };
 ---
 <Base title="Chris Stirling | Golden Age of Piracy Historical Fiction" description="Historical fiction by Chris Stirling. Step into the Golden Age of Piracy with Crimson Cross: Azure Waves — a Caribbean adventure of vengeance, brotherhood, and buried secrets. Preorder now.">
   <style is:global>
@@ -33,6 +39,9 @@ const headshot = "https://static.wixstatic.com/media/5609ea_eef3f98dbd2348fe86fc
     .book .bt{font-family:var(--serif);font-size:18px;margin-bottom:6px}
     .book .bp{color:var(--brass);font-weight:600;margin-bottom:12px}
     .book .btn{margin-top:auto;align-self:flex-start}
+    .ytfacade{position:relative;aspect-ratio:16/9;max-width:840px;border-radius:14px;overflow:hidden;background-size:cover;background-position:center;cursor:pointer;box-shadow:0 16px 40px rgba(20,40,55,.18)}
+    .ytfacade::after{content:'';position:absolute;inset:0;background:rgba(16,36,46,.28)}
+    .ytplay{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:2;width:74px;height:74px;border-radius:50%;border:0;background:var(--crimson);color:#fff;font-size:26px;cursor:pointer}
     .about{display:grid;grid-template-columns:200px 1fr;gap:40px;align-items:center}
     .about img{width:200px;border-radius:10px;display:block}
     .posts{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
@@ -53,7 +62,6 @@ const headshot = "https://static.wixstatic.com/media/5609ea_eef3f98dbd2348fe86fc
         <div class="eyebrow">Golden Age of Piracy · Historical Fiction</div>
         <h1>Crimson Cross<span class="sub">Azure Waves</span></h1>
         <p class="lede">Charleston burns, a family falls, and sixteen-year-old Samuel Drayton is cast into the lawless waters of the Caribbean — where the line between pirate and patriot is thinner than he ever imagined.</p>
-
         <div class="capture">
           <div class="k">Start reading free</div>
           <div class="s">Get the first chapter as a PDF, plus the occasional letter from the writing desk.</div>
@@ -63,14 +71,12 @@ const headshot = "https://static.wixstatic.com/media/5609ea_eef3f98dbd2348fe86fc
           </form>
           <div class="formmsg" id="formmsg"></div>
         </div>
-
         <div class="orrow"><span class="ln"></span><span>OR PREORDER NOW</span><span class="ln"></span></div>
         <div class="preorder">
           <a class="btn btn-crimson" href="/books/azure-waves">Preorder hardcover · $49.99</a>
           <a class="btn btn-ghost" href="/books/azure-waves">Paperback · $19.99</a>
         </div>
       </div>
-
       <div class="cover">
         <span class="tag">Coming mid-2026</span>
         <img src={cover} alt="Crimson Cross: Azure Waves cover" />
@@ -96,6 +102,17 @@ const headshot = "https://static.wixstatic.com/media/5609ea_eef3f98dbd2348fe86fc
     </div>
   </section>
 
+  {video && (
+    <section class="pad wrap" style="padding-top:40px;">
+      <div class="sec-label">Watch</div>
+      <h2>From the channel</h2>
+      <div class="ytfacade" id="ytfacade" data-id={video.id} style={`background-image:url('${video.thumb}')`}>
+        <button class="ytplay" aria-label="Play latest video">▶</button>
+      </div>
+      <p class="prose" style="margin-top:12px;"><a href="https://www.youtube.com/@Chris.Stirling" style="color:var(--teal-d);">More pirate history on YouTube →</a></p>
+    </section>
+  )}
+
   <section class="pad" style="background:var(--surface2);margin-top:24px;">
     <div class="wrap about">
       <img src={headshot} alt="Chris Stirling" />
@@ -116,11 +133,21 @@ const headshot = "https://static.wixstatic.com/media/5609ea_eef3f98dbd2348fe86fc
     </div>
   </section>
 
+  <script type="application/ld+json" set:html={JSON.stringify(personLd)} />
+  <script type="application/ld+json" set:html={JSON.stringify(siteLd)} />
+  <script type="application/ld+json" set:html={JSON.stringify(bookLd)} />
+
   <script>
     import { createClient, OAuthStrategy } from '@wix/sdk';
     import { products } from '@wix/stores';
     import { posts } from '@wix/blog';
     const clientId = import.meta.env.PUBLIC_WIX_CLIENT_ID;
+
+    const fac = document.getElementById('ytfacade');
+    fac && fac.addEventListener('click', () => {
+      const id = fac.dataset.id;
+      fac.innerHTML = '<iframe style="position:absolute;inset:0;width:100%;height:100%;border:0;" src="https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1" title="Latest video" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>';
+    });
 
     async function loadWixData() {
       if (!clientId) return;
@@ -132,8 +159,7 @@ const headshot = "https://static.wixstatic.com/media/5609ea_eef3f98dbd2348fe86fc
           if (items.length) {
             document.getElementById('books-grid').innerHTML = items.map((p) => {
               const price = (p.priceData && (p.priceData.formatted?.price || p.priceData.price)) || '';
-              const slug = (p.slug || '');
-              const dest = slug.indexOf('bermuda') >= 0 ? '/books/bermuda-years' : '/books/azure-waves';
+              const dest = (p.slug || '').indexOf('bermuda') >= 0 ? '/books/bermuda-years' : '/books/azure-waves';
               return `<div class="book"><div class="bt">${p.name}</div><div class="bp">${price}</div><a class="btn btn-crimson btn-sm" href="${dest}">View</a></div>`;
             }).join('');
           }
@@ -143,8 +169,7 @@ const headshot = "https://static.wixstatic.com/media/5609ea_eef3f98dbd2348fe86fc
           const items = res.items || [];
           if (items.length) {
             document.getElementById('posts-grid').innerHTML = items.map((post) => {
-              const url = post.url?.base ? (post.url.base + (post.url.path || '')) : '/blog';
-              return `<a class="post" href="${url}" style="display:block;"><div class="pt">${post.title}</div><div class="pe">${post.excerpt || ''}</div></a>`;
+              return `<a class="post" href="/blog/${post.slug}" style="display:block;"><div class="pt">${post.title}</div><div class="pe">${post.excerpt || ''}</div></a>`;
             }).join('');
           }
         } catch (e) { console.warn('Posts load failed:', e); }
