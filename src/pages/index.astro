@@ -1,9 +1,13 @@
 ---
 import Base from '../layouts/Base.astro';
 import { getLatestVideo } from '../lib/youtube.mjs';
+import { getPosts, coverUrl } from '../lib/wix.mjs';
 const cover = "https://static.wixstatic.com/media/5609ea_65bb8f67ff414550b698bf2dcfbd0324~mv2.png/v1/fill/w_440,h_700,al_c,q_90,enc_auto/Promo1%20Book%20Cover.png";
+const coverThumb = "https://static.wixstatic.com/media/5609ea_65bb8f67ff414550b698bf2dcfbd0324~mv2.png/v1/fill/w_120,h_192,al_c,q_85,enc_auto/Promo1%20Book%20Cover.png";
+const bermudaThumb = "/bermuda-cover.svg";
 const headshot = "https://static.wixstatic.com/media/5609ea_eef3f98dbd2348fe86fcc3c394cbfff0~mv2.png/v1/fill/w_240,h_320,al_c,q_85,enc_auto/file.png";
 const video = await getLatestVideo();
+const recentPosts = (await getPosts()).slice(0, 3);
 
 const personLd = { "@context": "https://schema.org", "@type": "Person", "name": "Chris Stirling", "url": "https://www.chrisstirling.com", "jobTitle": "Author", "sameAs": ["https://www.youtube.com/@Chris.Stirling", "https://www.tiktok.com/@chris_stirling", "https://www.instagram.com/chrisstirling.writer/"] };
 const siteLd = { "@context": "https://schema.org", "@type": "WebSite", "name": "Chris Stirling", "url": "https://www.chrisstirling.com" };
@@ -34,20 +38,29 @@ const bookLd = { "@context": "https://schema.org", "@type": "Book", "name": "Cri
     .strip .wrap{display:flex;gap:40px;justify-content:center;flex-wrap:wrap;padding:16px 28px;font-size:13.5px;color:var(--muted)}
     .strip b{color:var(--teal-d);font-weight:600}
     .sec-label{color:var(--crimson);font-size:12px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;margin-bottom:12px}
-    .books{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px}
-    .book{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px;display:flex;flex-direction:column;box-shadow:0 8px 22px rgba(20,40,55,.06)}
-    .book .bt{font-family:var(--serif);font-size:18px;margin-bottom:6px}
-    .book .bp{color:var(--brass);font-weight:600;margin-bottom:12px}
-    .book .btn{margin-top:auto;align-self:flex-start}
+    .books{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}
+    .book{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px;display:flex;gap:16px;align-items:center;box-shadow:0 8px 22px rgba(20,40,55,.06);text-decoration:none;color:inherit;transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease}
+    .book:hover{transform:translateY(-3px);box-shadow:0 16px 34px rgba(20,40,55,.13);border-color:rgba(20,128,142,.4)}
+    .book .bthumb{width:66px;height:106px;object-fit:cover;border-radius:5px;box-shadow:0 6px 16px rgba(20,40,55,.22);flex:none;background:var(--surface2)}
+    .book .binfo{display:flex;flex-direction:column;min-width:0}
+    .book .bt{font-family:var(--serif);font-size:18px;line-height:1.2;margin-bottom:4px}
+    .book .bfmt{display:block;font-family:var(--sans);font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-top:3px}
+    .book .bp{color:var(--brass);font-weight:600;margin:8px 0 8px}
+    .book .bgo{color:var(--teal-d);font-weight:600;font-size:14px}
     .ytfacade{position:relative;aspect-ratio:16/9;max-width:840px;border-radius:14px;overflow:hidden;background-size:cover;background-position:center;cursor:pointer;box-shadow:0 16px 40px rgba(20,40,55,.18)}
     .ytfacade::after{content:'';position:absolute;inset:0;background:rgba(16,36,46,.28)}
     .ytplay{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:2;width:74px;height:74px;border-radius:50%;border:0;background:var(--crimson);color:#fff;font-size:26px;cursor:pointer}
     .about{display:grid;grid-template-columns:200px 1fr;gap:40px;align-items:center}
     .about img{width:200px;border-radius:10px;display:block}
-    .posts{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
-    .post{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px;box-shadow:0 8px 22px rgba(20,40,55,.06)}
-    .post .pt{font-family:var(--serif);font-size:17px;margin-bottom:8px}
-    .post .pe{color:var(--muted);font-size:14px}
+    .posts{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+    .post{position:relative;overflow:hidden;isolation:isolate;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:20px;box-shadow:0 8px 22px rgba(20,40,55,.06);text-decoration:none;color:inherit;display:flex;flex-direction:column;justify-content:flex-end;min-height:230px;transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease}
+    .post:hover{transform:translateY(-3px);box-shadow:0 16px 34px rgba(20,40,55,.13);border-color:rgba(20,128,142,.4)}
+    .post:hover[data-cover='1']::before{opacity:.78}
+    .post[data-cover='1']::before{content:'';position:absolute;inset:0;z-index:-2;background-image:var(--cv);background-size:cover;background-position:center 28%;opacity:.62;transition:opacity .15s ease}
+    .post[data-cover='1']::after{content:'';position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(255,255,255,0) 0%,rgba(255,255,255,.32) 30%,rgba(255,255,255,.80) 52%,rgba(255,255,255,.97) 70%,rgba(255,255,255,1) 100%)}
+    .post .pt{font-family:var(--serif);font-size:18px;font-weight:700;line-height:1.25;margin-bottom:7px;text-shadow:0 1px 0 rgba(255,255,255,.9)}
+    .post .pe{color:#3A4750;font-size:14px;line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+    .post .pgo{color:var(--teal-d);font-weight:600;font-size:14px;padding-top:11px}
     @media(max-width:880px){
       .hero{grid-template-columns:1fr;gap:34px;padding:36px 0 46px}
       .hero h1{font-size:40px} .hero h1 .sub{font-size:24px}
@@ -95,10 +108,19 @@ const bookLd = { "@context": "https://schema.org", "@type": "Book", "name": "Cri
   <section class="pad wrap" id="books" style="padding-top:50px;">
     <div class="sec-label">The books</div>
     <h2>The Crimson Cross series</h2>
-    <div class="books" id="books-grid">
-      <div class="book"><div class="bt">Crimson Cross: Azure Waves (Hardcover)</div><div class="bp">$49.99</div><a class="btn btn-crimson btn-sm" href="/books/azure-waves">View</a></div>
-      <div class="book"><div class="bt">Crimson Cross: Azure Waves (Paperback)</div><div class="bp">$19.99</div><a class="btn btn-crimson btn-sm" href="/books/azure-waves">View</a></div>
-      <div class="book"><div class="bt">Crimson Cross: The Bermuda Years</div><div class="bp">$14.99</div><a class="btn btn-ghost btn-sm" href="/books/bermuda-years">More info</a></div>
+    <div class="books">
+      <a class="book" href="/books/azure-waves">
+        <img class="bthumb" src={coverThumb} alt="Crimson Cross: Azure Waves cover" loading="lazy" />
+        <div class="binfo"><div class="bt">Azure Waves <span class="bfmt">Hardcover</span></div><div class="bp">$49.99</div><span class="bgo">View →</span></div>
+      </a>
+      <a class="book" href="/books/azure-waves">
+        <img class="bthumb" src={coverThumb} alt="Crimson Cross: Azure Waves cover" loading="lazy" />
+        <div class="binfo"><div class="bt">Azure Waves <span class="bfmt">Paperback</span></div><div class="bp">$19.99</div><span class="bgo">View →</span></div>
+      </a>
+      <a class="book" href="/books/bermuda-years">
+        <img class="bthumb" src={bermudaThumb} alt="Crimson Cross: The Bermuda Years cover" loading="lazy" />
+        <div class="binfo"><div class="bt">The Bermuda Years <span class="bfmt">Prequel</span></div><div class="bp">$14.99</div><span class="bgo">More info →</span></div>
+      </a>
     </div>
   </section>
 
@@ -128,9 +150,24 @@ const bookLd = { "@context": "https://schema.org", "@type": "Book", "name": "Cri
   <section class="pad wrap" id="blog" style="padding-top:40px;">
     <div class="sec-label">From the blog</div>
     <h2>Pirate history &amp; the writing journey</h2>
-    <div class="posts" id="posts-grid">
-      <div class="post"><div class="pt">Visit the blog</div><div class="pe">Stories from the Golden Age of Piracy and behind-the-scenes notes. <a href="/blog" style="color:var(--teal-d);">Read the latest →</a></div></div>
+    <div class="posts">
+      {recentPosts.length ? recentPosts.map((p) => {
+        const img = coverUrl(p);
+        const url = '/blog/' + (p.slug || (p.url && p.url.relativeUrl ? p.url.relativeUrl.replace(/^\/+/, '') : ''));
+        return (
+          <a class="post" href={url} data-cover={img ? '1' : '0'} style={img ? `--cv:url('${img}')` : ''}>
+            <div class="pt">{p.title}</div>
+            <div class="pe">{p.excerpt || ''}</div>
+            <span class="pgo">Read →</span>
+          </a>
+        );
+      }) : (
+        <div class="post"><div class="pt">Visit the blog</div><div class="pe">Stories from the Golden Age of Piracy and behind-the-scenes notes.</div><a href="/blog" class="pgo">Read the latest →</a></div>
+      )}
     </div>
+    {recentPosts.length > 0 && (
+      <p class="prose" style="margin-top:16px;"><a href="/blog" style="color:var(--teal-d);">See all posts →</a></p>
+    )}
   </section>
 
   <script type="application/ld+json" set:html={JSON.stringify(personLd)} />
@@ -138,43 +175,11 @@ const bookLd = { "@context": "https://schema.org", "@type": "Book", "name": "Cri
   <script type="application/ld+json" set:html={JSON.stringify(bookLd)} />
 
   <script>
-    import { createClient, OAuthStrategy } from '@wix/sdk';
-    import { products } from '@wix/stores';
-    import { posts } from '@wix/blog';
-    const clientId = import.meta.env.PUBLIC_WIX_CLIENT_ID;
-
     const fac = document.getElementById('ytfacade');
     fac && fac.addEventListener('click', () => {
       const id = fac.dataset.id;
       fac.innerHTML = '<iframe style="position:absolute;inset:0;width:100%;height:100%;border:0;" src="https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1" title="Latest video" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe>';
     });
-
-    async function loadWixData() {
-      if (!clientId) return;
-      try {
-        const wix = createClient({ modules: { products, posts }, auth: OAuthStrategy({ clientId }) });
-        try {
-          const res = await wix.products.queryProducts().find();
-          const items = res.items || [];
-          if (items.length) {
-            document.getElementById('books-grid').innerHTML = items.map((p) => {
-              const price = (p.priceData && (p.priceData.formatted?.price || p.priceData.price)) || '';
-              const dest = (p.slug || '').indexOf('bermuda') >= 0 ? '/books/bermuda-years' : '/books/azure-waves';
-              return `<div class="book"><div class="bt">${p.name}</div><div class="bp">${price}</div><a class="btn btn-crimson btn-sm" href="${dest}">View</a></div>`;
-            }).join('');
-          }
-        } catch (e) { console.warn('Products load failed:', e); }
-        try {
-          const res = await wix.posts.queryPosts().limit(3).find();
-          const items = res.items || [];
-          if (items.length) {
-            document.getElementById('posts-grid').innerHTML = items.map((post) => {
-              return `<a class="post" href="/blog/${post.slug}" style="display:block;"><div class="pt">${post.title}</div><div class="pe">${post.excerpt || ''}</div></a>`;
-            }).join('');
-          }
-        } catch (e) { console.warn('Posts load failed:', e); }
-      } catch (e) { console.warn('Wix client init failed:', e); }
-    }
 
     const form = document.getElementById('signup');
     form?.addEventListener('submit', async (ev) => {
@@ -187,7 +192,5 @@ const bookLd = { "@context": "https://schema.org", "@type": "Book", "name": "Cri
         msg.textContent = r.ok ? 'Check your inbox for Chapter One!' : 'Thanks — we’ll be in touch.';
       } catch { msg.textContent = 'Thanks — we’ll be in touch.'; }
     });
-
-    loadWixData();
   </script>
 </Base>

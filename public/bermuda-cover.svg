@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1280" width="800" height="1280" role="img" aria-label="Crimson Cross: The Bermuda Years — working cover">
+  <defs>
+    <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0C1F31"/>
+      <stop offset="0.45" stop-color="#124F63"/>
+      <stop offset="0.78" stop-color="#1B8295"/>
+      <stop offset="1" stop-color="#2AA3B2"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.40" r="0.62">
+      <stop offset="0" stop-color="#39B7C6" stop-opacity="0.40"/>
+      <stop offset="1" stop-color="#0C1F31" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="vign" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#06121C" stop-opacity="0.55"/>
+      <stop offset="0.25" stop-color="#06121C" stop-opacity="0"/>
+      <stop offset="0.8" stop-color="#06121C" stop-opacity="0"/>
+      <stop offset="1" stop-color="#06121C" stop-opacity="0.5"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="1280" fill="url(#sea)"/>
+  <rect width="800" height="1280" fill="url(#glow)"/>
+
+  <!-- compass rose (faint, behind title) -->
+  <g transform="translate(400 560)" fill="#FFFFFF" stroke="#FFFFFF">
+    <circle r="218" fill="none" stroke-opacity="0.10" stroke-width="2"/>
+    <circle r="180" fill="none" stroke-opacity="0.07" stroke-width="1"/>
+    <g fill-opacity="0.085" stroke-opacity="0.16" stroke-width="1">
+      <g><path d="M0,-210 L11,-18 L0,0 L-11,-18 Z"/></g>
+      <g transform="rotate(90)"><path d="M0,-210 L11,-18 L0,0 L-11,-18 Z"/></g>
+      <g transform="rotate(180)"><path d="M0,-210 L11,-18 L0,0 L-11,-18 Z"/></g>
+      <g transform="rotate(270)"><path d="M0,-210 L11,-18 L0,0 L-11,-18 Z"/></g>
+    </g>
+    <g fill-opacity="0.05" stroke-opacity="0.10" stroke-width="1">
+      <g transform="rotate(45)"><path d="M0,-150 L8,-16 L0,0 L-8,-16 Z"/></g>
+      <g transform="rotate(135)"><path d="M0,-150 L8,-16 L0,0 L-8,-16 Z"/></g>
+      <g transform="rotate(225)"><path d="M0,-150 L8,-16 L0,0 L-8,-16 Z"/></g>
+      <g transform="rotate(315)"><path d="M0,-150 L8,-16 L0,0 L-8,-16 Z"/></g>
+    </g>
+    <circle r="9" fill="#C9A24B" fill-opacity="0.85" stroke="none"/>
+  </g>
+
+  <!-- coastal fort silhouette -->
+  <path d="M0,1130 L0,1066 Q130,1050 210,1058 L210,1030 L234,1030 L234,1014 L258,1014 L258,1030 L282,1030 L282,1058 Q430,1046 566,1062 L566,1034 L590,1034 L590,1018 L614,1018 L614,1034 L640,1034 L640,1062 Q720,1058 800,1052 L800,1130 Z" fill="#081521" fill-opacity="0.92"/>
+  <!-- flag on fort -->
+  <line x1="246" y1="1014" x2="246" y2="986" stroke="#081521" stroke-opacity="0.92" stroke-width="3"/>
+  <path d="M246,988 L276,995 L246,1002 Z" fill="#C5412E" fill-opacity="0.9"/>
+
+  <!-- crimson cross emblem -->
+  <g transform="translate(400 250)" fill="#C5412E">
+    <rect x="-5" y="-42" width="10" height="84" rx="2"/>
+    <rect x="-28" y="-19" width="56" height="10" rx="2"/>
+    <circle cx="0" cy="-50" r="5"/>
+  </g>
+
+  <!-- text -->
+  <text x="400" y="158" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="22" letter-spacing="7" fill="#D9B765">THE CRIMSON CROSS SERIES</text>
+
+  <text x="400" y="520" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-style="italic" font-size="50" fill="#E7F2F3">The</text>
+  <text x="400" y="628" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-weight="bold" font-size="100" letter-spacing="2" fill="#FFFFFF">BERMUDA</text>
+  <text x="400" y="730" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-weight="bold" font-size="100" letter-spacing="10" fill="#FFFFFF">YEARS</text>
+
+  <line x1="300" y1="800" x2="500" y2="800" stroke="#D9B765" stroke-opacity="0.7" stroke-width="1.5"/>
+  <text x="400" y="846" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="24" letter-spacing="6" fill="#D9B765">A PREQUEL NOVELLA</text>
+
+  <text x="400" y="1196" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="40" letter-spacing="5" fill="#F3F7F7">CHRIS STIRLING</text>
+
+  <rect width="800" height="1280" fill="url(#vign)"/>
+  <rect x="34" y="34" width="732" height="1212" fill="none" stroke="#C9A24B" stroke-opacity="0.65" stroke-width="2"/>
+  <rect x="44" y="44" width="712" height="1192" fill="none" stroke="#C9A24B" stroke-opacity="0.30" stroke-width="1"/>
+</svg>

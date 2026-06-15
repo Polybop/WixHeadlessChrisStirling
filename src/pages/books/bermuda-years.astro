@@ -1,13 +1,13 @@
 ---
 import Base from '../../layouts/Base.astro';
-const cover = "https://static.wixstatic.com/media/5609ea_65bb8f67ff414550b698bf2dcfbd0324~mv2.png/v1/fill/w_420,h_670,al_c,q_90,enc_auto/Promo1%20Book%20Cover.png";
+const cover = "/bermuda-cover.svg";
 const PRODUCT = "https://www.chrisstirling.com/product-page/crimson-cross-the-bermuda-years-working-title";
 ---
 <Base title="Crimson Cross: The Bermuda Years | Chris Stirling" description="The prequel novella to the Crimson Cross series — Thomas Drayton's Bermuda years.">
   <main class="wrap">
     <section class="pad" style="display:grid;grid-template-columns:420px 1fr;gap:50px;align-items:start;padding-top:48px;">
       <div>
-        <img src={cover} alt="Crimson Cross: The Bermuda Years" style="width:420px;max-width:100%;border-radius:8px;box-shadow:0 18px 44px rgba(20,40,55,.22);display:block;filter:grayscale(.15) sepia(.12);" />
+        <img src={cover} alt="Crimson Cross: The Bermuda Years cover" style="width:420px;max-width:100%;border-radius:8px;box-shadow:0 18px 44px rgba(20,40,55,.22);display:block;" />
         <div style="margin-top:18px;">
           <a class="btn btn-crimson" href={PRODUCT}>More info · $14.99</a>
         </div>
