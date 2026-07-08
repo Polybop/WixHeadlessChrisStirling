@@ -1,0 +1,141 @@
+---
+// Standalone landing page for social/posts: chrisstirling.com/chapter-one
+// One goal: email signup -> MailerLite Newsletter group -> Chapter One PDF automation.
+// Intentionally does NOT use Base.astro (no nav/footer distractions).
+const cover = "https://static.wixstatic.com/media/5609ea_65bb8f67ff414550b698bf2dcfbd0324~mv2.png/v1/fill/w_440,h_700,al_c,q_90,enc_auto/Promo1%20Book%20Cover.png";
+const ogImage = "https://static.wixstatic.com/media/5609ea_65bb8f67ff414550b698bf2dcfbd0324~mv2.png/v1/fill/w_1200,h_630,al_c,q_85,enc_auto/cover.png";
+const title = "Read Chapter One Free — Crimson Cross: Azure Waves | Chris Stirling";
+const description = "Get the first chapter of Crimson Cross: Azure Waves free as a PDF. Charleston burns, a family falls, and sixteen-year-old Samuel Drayton is cast into the lawless waters of the Caribbean.";
+const canonical = "https://www.chrisstirling.com/chapter-one";
+const bookLd = { "@context": "https://schema.org", "@type": "Book", "name": "Crimson Cross: Azure Waves", "author": { "@type": "Person", "name": "Chris Stirling" }, "url": "https://www.chrisstirling.com/books/azure-waves", "image": cover };
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonical} />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={ogImage} />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:site_name" content="Chris Stirling" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={ogImage} />
+  <script type="application/ld+json" set:html={JSON.stringify(bookLd)} />
+  <style is:global>
+    :root{
+      --bg:#E5ECEC; --surface:#FFFFFF; --surface2:#D5DFE0;
+      --ink:#16242E; --muted:#5A6B74;
+      --crimson:#C5412E; --crimson-d:#A8321F;
+      --teal:#16808E; --teal-d:#0F6470; --navy:#14304A;
+      --line:rgba(20,40,55,0.16);
+      --serif:"Iowan Old Style","Palatino Linotype",Georgia,"Times New Roman",serif;
+      --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased;min-height:100vh;display:flex;flex-direction:column}
+    a{color:inherit;text-decoration:none}
+    .top{padding:22px 28px;text-align:center}
+    .brand{font-family:var(--serif);font-size:18px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink)}
+    main{flex:1;display:flex;align-items:center;justify-content:center;padding:20px 28px 50px}
+    .land{display:grid;grid-template-columns:340px 1fr;gap:56px;align-items:center;max-width:960px}
+    .cover{position:relative;justify-self:center}
+    .cover img{width:300px;max-width:100%;border-radius:6px;box-shadow:0 26px 60px rgba(20,40,55,.28);display:block}
+    .cover .tag{position:absolute;top:-14px;right:-14px;background:var(--crimson);color:#fff;font-size:12px;font-weight:600;letter-spacing:.08em;padding:7px 12px;border-radius:6px;text-transform:uppercase}
+    .eyebrow{color:var(--crimson);font-size:13px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;margin-bottom:14px}
+    h1{font-family:var(--serif);font-size:44px;line-height:1.1;font-weight:600;margin-bottom:6px}
+    h1 .sub{display:block;color:var(--teal);font-size:24px;font-style:italic;margin-top:6px}
+    .lede{font-size:17px;color:#3A4A53;max-width:32em;margin:16px 0 24px}
+    .capture{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:22px;max-width:460px;box-shadow:0 12px 30px rgba(20,40,55,.08)}
+    .capture .k{font-family:var(--serif);font-size:19px;margin-bottom:4px}
+    .capture .s{font-size:13.5px;color:var(--muted);margin-bottom:14px}
+    .field{display:flex;gap:8px}
+    .field input{flex:1;background:#fff;border:1px solid var(--line);border-radius:7px;color:var(--ink);padding:0 13px;height:46px;font-size:14px;font-family:var(--sans)}
+    .field input::placeholder{color:#9AA7B0}
+    .btn{display:inline-block;border-radius:7px;font-weight:600;cursor:pointer;border:0;font-family:var(--sans)}
+    .btn-crimson{background:var(--crimson);color:#fff;height:46px;padding:0 18px;font-size:15px;white-space:nowrap}
+    .btn-crimson:hover{background:var(--crimson-d)}
+    .formmsg{font-size:13px;color:var(--teal-d);margin-top:10px;min-height:18px}
+    .fine{font-size:12.5px;color:var(--muted);margin-top:12px}
+    .success{display:none;text-align:left}
+    .success .big{font-family:var(--serif);font-size:22px;color:var(--teal-d);margin-bottom:8px}
+    .success p{font-size:14px;color:#3A4A53;margin-bottom:8px}
+    .backlink{text-align:center;padding:0 28px 34px;font-size:13.5px;color:var(--muted)}
+    .backlink a{color:var(--teal-d);font-weight:600}
+    @media(max-width:820px){
+      .land{grid-template-columns:1fr;gap:34px;text-align:center}
+      .cover{order:-1} .cover img{width:210px}
+      h1{font-size:34px} h1 .sub{font-size:20px}
+      .lede{margin-left:auto;margin-right:auto}
+      .capture{margin:0 auto}
+      .success{text-align:center}
+    }
+  </style>
+</head>
+<body>
+  <div class="top"><a class="brand" href="/">Chris Stirling</a></div>
+
+  <main>
+    <div class="land">
+      <div class="cover">
+        <span class="tag">Coming late 2026</span>
+        <img src={cover} alt="Crimson Cross: Azure Waves book cover" />
+      </div>
+      <div>
+        <div class="eyebrow">Golden Age of Piracy · Historical Fiction</div>
+        <h1>Read Chapter One free<span class="sub">Crimson Cross: Azure Waves</span></h1>
+        <p class="lede">Charleston burns, a family falls, and sixteen-year-old Samuel Drayton is cast into the lawless waters of the Caribbean — where the line between pirate and patriot is thinner than he ever imagined.</p>
+        <div class="capture">
+          <div id="capture-form">
+            <div class="k">Where should I send it?</div>
+            <div class="s">Chapter One arrives in your inbox as a PDF, plus the occasional letter from the writing desk.</div>
+            <form class="field" id="signup">
+              <input type="email" id="email" placeholder="you@email.com" required autocomplete="email" />
+              <button class="btn btn-crimson" type="submit">Send me Chapter One</button>
+            </form>
+            <div class="formmsg" id="formmsg"></div>
+            <div class="fine">No spam, ever. Unsubscribe anytime with one click.</div>
+          </div>
+          <div class="success" id="capture-success">
+            <div class="big">Chapter One is on its way ⚓</div>
+            <p>Check your inbox in the next few minutes — and peek in the spam folder if it doesn't turn up.</p>
+            <p>While you wait: <a href="/blog" style="color:var(--teal-d);font-weight:600">read the ship's log</a>.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div class="backlink">Prefer to browse first? <a href="/">Visit the full site</a></div>
+
+  <script>
+    const form = document.getElementById('signup');
+    form?.addEventListener('submit', async (ev) => {
+      ev.preventDefault();
+      const email = (document.getElementById('email') as HTMLInputElement).value.trim();
+      const msg = document.getElementById('formmsg');
+      const btn = form.querySelector('button');
+      if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
+      try {
+        const r = await fetch('/api/subscribe', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email }) });
+        if (r.ok) {
+          document.getElementById('capture-form').style.display = 'none';
+          document.getElementById('capture-success').style.display = 'block';
+        } else {
+          if (msg) msg.textContent = 'Something went wrong — please try again.';
+          if (btn) { btn.disabled = false; btn.textContent = 'Send me Chapter One'; }
+        }
+      } catch {
+        if (msg) msg.textContent = 'Something went wrong — please try again.';
+        if (btn) { btn.disabled = false; btn.textContent = 'Send me Chapter One'; }
+      }
+    });
+  </script>
+</body>
+</html>
