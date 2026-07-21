@@ -1,5 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
+import SocialIcons from '../components/SocialIcons.astro';
 ---
 <Base title="Contact | Chris Stirling" description="Get in touch with author Chris Stirling.">
   <main class="wrap">
@@ -17,13 +18,7 @@ import Base from '../layouts/Base.astro';
       <div class="card">
         <h3>Follow along</h3>
         <p class="prose" style="font-size:15px;">Behind-the-scenes pirate history and writing updates:</p>
-        <p style="margin-top:10px;">
-          <a href="https://www.youtube.com/@ChrisStirlingAuthor" style="color:var(--brass);">YouTube</a> ·
-          <a href="https://x.com/ChrisStirling_" style="color:var(--brass);">X</a> ·
-          <a href="https://www.facebook.com/chrisstirling.writer" style="color:var(--brass);">Facebook</a> ·
-          <a href="https://www.instagram.com/chrisstirling.writer/" style="color:var(--brass);">Instagram</a> ·
-          <a href="https://www.tiktok.com/@chris_stirling" style="color:var(--brass);">TikTok</a>
-        </p>
+        <p style="margin-top:12px;"><SocialIcons color="var(--brass)" size={22} /></p>
       </div>
       <div class="card">
         <h3>Get the first chapter</h3>

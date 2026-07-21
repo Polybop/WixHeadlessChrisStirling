@@ -5,6 +5,7 @@ const {
   image = "https://static.wixstatic.com/media/5609ea_65bb8f67ff414550b698bf2dcfbd0324~mv2.png/v1/fill/w_1200,h_630,al_c,q_85,enc_auto/cover.png",
 } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site || "https://www.chrisstirling.com").href;
+import SocialIcons from '../components/SocialIcons.astro';
 ---
 <!doctype html>
 <html lang="en">
@@ -85,13 +86,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site || "https://www.chrisst
   <footer>
     <div class="wrap">
       <div>© 2026 Chris Stirling · Historical fiction author</div>
-      <div class="socials">
-        <a href="https://www.youtube.com/@ChrisStirlingAuthor">YouTube</a>
-        <a href="https://x.com/ChrisStirling_">X</a>
-        <a href="https://www.facebook.com/chrisstirling.writer">Facebook</a>
-        <a href="https://www.instagram.com/chrisstirling.writer/">Instagram</a>
-        <a href="https://www.tiktok.com/@chris_stirling">TikTok</a>
-      </div>
+      <SocialIcons color="#CFE0E6" size={20} />
     </div>
   </footer>
 </body>
