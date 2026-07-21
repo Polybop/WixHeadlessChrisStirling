@@ -2,8 +2,8 @@
 // Data API, filtering out Shorts (anything under MIN_SECONDS).
 // Requires env var YOUTUBE_API_KEY (build-time only; not exposed to the client).
 
-const CHANNEL_ID = 'UCmdtgh82euDe7iiSyzwSjcQ';
-const UPLOADS_PLAYLIST = 'UUmdtgh82euDe7iiSyzwSjcQ'; // uploads playlist = channel id with UC->UU
+const CHANNEL_ID = 'UCXGvKmKa0jfe_SMBANHtSFw';
+const UPLOADS_PLAYLIST = 'UUXGvKmKa0jfe_SMBANHtSFw'; // uploads playlist = channel id with UC->UU
 const MIN_SECONDS = 180; // exclude Shorts / very short clips
 
 function apiKey() {

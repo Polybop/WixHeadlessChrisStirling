@@ -9,7 +9,7 @@ const headshot = "https://static.wixstatic.com/media/5609ea_eef3f98dbd2348fe86fc
 const video = await getLatestVideo();
 const recentPosts = (await getPosts()).slice(0, 3);
 
-const personLd = { "@context": "https://schema.org", "@type": "Person", "name": "Chris Stirling", "url": "https://www.chrisstirling.com", "jobTitle": "Author", "sameAs": ["https://www.youtube.com/@Chris.Stirling", "https://www.tiktok.com/@chris_stirling", "https://www.instagram.com/chrisstirling.writer/"] };
+const personLd = { "@context": "https://schema.org", "@type": "Person", "name": "Chris Stirling", "url": "https://www.chrisstirling.com", "jobTitle": "Author", "sameAs": ["https://www.youtube.com/@ChrisStirlingAuthor", "https://x.com/ChrisStirling_", "https://www.facebook.com/chrisstirling.writer", "https://www.instagram.com/chrisstirling.writer/", "https://www.tiktok.com/@chris_stirling"] };
 const siteLd = { "@context": "https://schema.org", "@type": "WebSite", "name": "Chris Stirling", "url": "https://www.chrisstirling.com" };
 const bookLd = { "@context": "https://schema.org", "@type": "Book", "name": "Crimson Cross: Azure Waves", "author": { "@type": "Person", "name": "Chris Stirling" }, "bookFormat": "https://schema.org/Hardcover", "url": "https://www.chrisstirling.com/books/azure-waves", "image": cover, "offers": [ { "@type": "Offer", "price": "49.99", "priceCurrency": "USD", "availability": "https://schema.org/PreOrder" }, { "@type": "Offer", "price": "19.99", "priceCurrency": "USD", "availability": "https://schema.org/PreOrder" } ] };
 ---
@@ -131,7 +131,7 @@ const bookLd = { "@context": "https://schema.org", "@type": "Book", "name": "Cri
       <div class="ytfacade" id="ytfacade" data-id={video.id} style={`background-image:url('${video.thumb}')`}>
         <button class="ytplay" aria-label="Play latest video">▶</button>
       </div>
-      <p class="prose" style="margin-top:12px;"><a href="https://www.youtube.com/@Chris.Stirling" style="color:var(--teal-d);">More pirate history on YouTube →</a></p>
+      <p class="prose" style="margin-top:12px;"><a href="https://www.youtube.com/@ChrisStirlingAuthor" style="color:var(--teal-d);">More pirate history on YouTube →</a></p>
     </section>
   )}
 
