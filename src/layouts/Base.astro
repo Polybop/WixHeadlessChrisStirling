@@ -6,6 +6,12 @@ const {
 } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site || "https://www.chrisstirling.com").href;
 import SocialIcons from '../components/SocialIcons.astro';
+
+// Analytics — both are free, optional, and no-op if the env var isn't set.
+// GA4: sessions, users, source/medium (reads utm_source/utm_medium/utm_campaign links).
+const gaId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID;
+// Cloudflare Web Analytics manual-setup fallback (skip if using Automatic Setup in the CF dashboard, which needs no code).
+const cfBeaconToken = import.meta.env.PUBLIC_CF_BEACON_TOKEN;
 ---
 <!doctype html>
 <html lang="en">
@@ -26,6 +32,21 @@ import SocialIcons from '../components/SocialIcons.astro';
   <meta name="twitter:description" content={description} />
   <meta name="twitter:image" content={image} />
   <meta name="twitter:site" content="@ChrisStirling_" />
+  {gaId && (
+    <>
+      <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}></script>
+      <script is:inline define:vars={{ GA_ID: gaId }}>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){ dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', GA_ID);
+      </script>
+    </>
+  )}
+  {cfBeaconToken && (
+    <script is:inline defer src="https://static.cloudflareinsights.com/beacon.min.js"
+            data-cf-beacon={`{"token": "${cfBeaconToken}"}`}></script>
+  )}
   <style is:global>
     :root{
       --bg:#E5ECEC; --surface:#FFFFFF; --surface2:#D5DFE0;
@@ -78,7 +99,7 @@ import SocialIcons from '../components/SocialIcons.astro';
       <a href="/press">Press</a>
       <a href="/contact">Contact</a>
     </div>
-    <a class="btn btn-crimson btn-sm" href="/#books">Preorder</a>
+    <a class="btn btn-crimson btn-sm" href="/chapter-one">Free Chapter</a>
   </nav>
 
   <slot />

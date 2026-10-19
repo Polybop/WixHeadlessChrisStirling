@@ -11,9 +11,9 @@ const recentPosts = (await getPosts()).slice(0, 3);
 
 const personLd = { "@context": "https://schema.org", "@type": "Person", "name": "Chris Stirling", "url": "https://www.chrisstirling.com", "jobTitle": "Author", "sameAs": ["https://www.youtube.com/@ChrisStirlingAuthor", "https://x.com/ChrisStirling_", "https://www.facebook.com/chrisstirling.writer", "https://www.instagram.com/chrisstirling.writer/", "https://www.tiktok.com/@chris_stirling"] };
 const siteLd = { "@context": "https://schema.org", "@type": "WebSite", "name": "Chris Stirling", "url": "https://www.chrisstirling.com" };
-const bookLd = { "@context": "https://schema.org", "@type": "Book", "name": "Crimson Cross: Azure Waves", "author": { "@type": "Person", "name": "Chris Stirling" }, "bookFormat": "https://schema.org/Hardcover", "url": "https://www.chrisstirling.com/books/azure-waves", "image": cover, "offers": [ { "@type": "Offer", "price": "49.99", "priceCurrency": "USD", "availability": "https://schema.org/PreOrder" }, { "@type": "Offer", "price": "19.99", "priceCurrency": "USD", "availability": "https://schema.org/PreOrder" } ] };
+const bookLd = { "@context": "https://schema.org", "@type": "Book", "name": "Crimson Cross: Azure Waves", "author": { "@type": "Person", "name": "Chris Stirling" }, "url": "https://www.chrisstirling.com/books/azure-waves", "image": cover };
 ---
-<Base title="Chris Stirling | Golden Age of Piracy Historical Fiction" description="Historical fiction by Chris Stirling. Step into the Golden Age of Piracy with Crimson Cross: Azure Waves — a Caribbean adventure of vengeance, brotherhood, and buried secrets. Preorder now.">
+<Base title="Chris Stirling | Golden Age of Piracy Historical Fiction" description="Historical fiction by Chris Stirling. Step into the Golden Age of Piracy with Crimson Cross: Azure Waves — a Caribbean adventure of vengeance, brotherhood, and buried secrets. Read the first chapter free.">
   <style is:global>
     .hero{display:grid;grid-template-columns:1.15fr .85fr;gap:54px;align-items:center;padding:54px 0 64px}
     .hero h1{font-size:54px;margin-bottom:16px}
@@ -84,14 +84,14 @@ const bookLd = { "@context": "https://schema.org", "@type": "Book", "name": "Cri
           </form>
           <div class="formmsg" id="formmsg"></div>
         </div>
-        <div class="orrow"><span class="ln"></span><span>OR PREORDER NOW</span><span class="ln"></span></div>
+        <div class="orrow"><span class="ln"></span><span>OR EXPLORE THE STORY</span><span class="ln"></span></div>
         <div class="preorder">
-          <a class="btn btn-crimson" href="/books/azure-waves">Preorder hardcover · $49.99</a>
-          <a class="btn btn-ghost" href="/books/azure-waves">Paperback · $19.99</a>
+          <a class="btn btn-ghost" href="/books/azure-waves">About the book</a>
+          <a class="btn btn-ghost" href="/blog">Read the blog</a>
         </div>
       </div>
       <div class="cover">
-        <span class="tag">Coming late 2026</span>
+        <span class="tag">Now in revision</span>
         <img src={cover} alt="Crimson Cross: Azure Waves cover" />
       </div>
     </div>
@@ -111,15 +111,11 @@ const bookLd = { "@context": "https://schema.org", "@type": "Book", "name": "Cri
     <div class="books">
       <a class="book" href="/books/azure-waves">
         <img class="bthumb" src={coverThumb} alt="Crimson Cross: Azure Waves cover" loading="lazy" />
-        <div class="binfo"><div class="bt">Azure Waves <span class="bfmt">Hardcover</span></div><div class="bp">$49.99</div><span class="bgo">View →</span></div>
-      </a>
-      <a class="book" href="/books/azure-waves">
-        <img class="bthumb" src={coverThumb} alt="Crimson Cross: Azure Waves cover" loading="lazy" />
-        <div class="binfo"><div class="bt">Azure Waves <span class="bfmt">Paperback</span></div><div class="bp">$19.99</div><span class="bgo">View →</span></div>
+        <div class="binfo"><div class="bt">Azure Waves <span class="bfmt">Book One</span></div><div class="bp">Now in revision</div><span class="bgo">View →</span></div>
       </a>
       <a class="book" href="/books/bermuda-years">
         <img class="bthumb" src={bermudaThumb} alt="Crimson Cross: The Bermuda Years cover" loading="lazy" />
-        <div class="binfo"><div class="bt">The Bermuda Years <span class="bfmt">Prequel</span></div><div class="bp">$14.99</div><span class="bgo">More info →</span></div>
+        <div class="binfo"><div class="bt">The Bermuda Years <span class="bfmt">Prequel</span></div><div class="bp">In development</div><span class="bgo">More info →</span></div>
       </a>
     </div>
   </section>

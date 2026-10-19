@@ -1,8 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
 const cover = "https://static.wixstatic.com/media/5609ea_65bb8f67ff414550b698bf2dcfbd0324~mv2.png/v1/fill/w_420,h_670,al_c,q_90,enc_auto/Promo1%20Book%20Cover.png";
-const HARDCOVER = "https://www.chrisstirling.com/product-page/crimson-cross-azure-waves-hardcover";
-const PAPERBACK = "https://www.chrisstirling.com/product-page/crimson-cross-azure-waves-paperback";
 ---
 <Base title="Crimson Cross: Azure Waves | Chris Stirling" description="Book One of the Crimson Cross series — a Caribbean adventure of vengeance, brotherhood, and buried secrets.">
   <main class="wrap">
@@ -10,10 +8,9 @@ const PAPERBACK = "https://www.chrisstirling.com/product-page/crimson-cross-azur
       <div>
         <img src={cover} alt="Crimson Cross: Azure Waves cover" style="width:420px;max-width:100%;border-radius:8px;box-shadow:0 18px 44px rgba(20,40,55,.22);display:block;" />
         <div style="margin-top:18px;display:flex;flex-direction:column;gap:10px;">
-          <a class="btn btn-crimson" href={HARDCOVER}>Preorder hardcover · $49.99</a>
-          <a class="btn btn-ghost" href={PAPERBACK}>Preorder paperback · $19.99</a>
+          <a class="btn btn-crimson" href="/chapter-one">Read Chapter One free</a>
         </div>
-        <p style="color:var(--muted);font-size:13px;margin-top:10px;">Coming late 2026</p>
+        <p style="color:var(--muted);font-size:13px;margin-top:10px;">Now in revision. Subscribers hear first when there's news.</p>
       </div>
       <div class="prose">
         <div class="eyebrow">Book One · The Crimson Cross series</div>
@@ -30,8 +27,8 @@ const PAPERBACK = "https://www.chrisstirling.com/product-page/crimson-cross-azur
         </ul>
         <div class="card" style="margin-top:24px;max-width:520px;">
           <h3>Read the first chapter free</h3>
-          <p style="font-size:15px;margin:6px 0 12px;">Start the adventure before you preorder.</p>
-          <a class="btn btn-crimson btn-sm" href="/#books">Send me Chapter One</a>
+          <p style="font-size:15px;margin:6px 0 12px;">Start the adventure now, and get the occasional letter from the writing desk.</p>
+          <a class="btn btn-crimson btn-sm" href="/chapter-one">Send me Chapter One</a>
         </div>
       </div>
     </section>
@@ -42,10 +39,6 @@ const PAPERBACK = "https://www.chrisstirling.com/product-page/crimson-cross-azur
     "author": { "@type": "Person", "name": "Chris Stirling" },
     "url": "https://www.chrisstirling.com/books/azure-waves",
     "image": cover,
-    "inLanguage": "en",
-    "offers": [
-      { "@type": "Offer", "name": "Hardcover", "price": "49.99", "priceCurrency": "USD", "availability": "https://schema.org/PreOrder", "url": HARDCOVER },
-      { "@type": "Offer", "name": "Paperback", "price": "19.99", "priceCurrency": "USD", "availability": "https://schema.org/PreOrder", "url": PAPERBACK }
-    ]
+    "inLanguage": "en"
   })} />
 </Base>
